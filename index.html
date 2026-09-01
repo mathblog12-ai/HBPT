@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CyberMath: Hệ BPT 2 Ẩn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="section-title pink">1. NHẬP BẤT PHƯƠNG TRÌNH</div>
+    <div class="muted">Dạng: a·x + b·y [dấu] c</div>
+    <div class="coef-form">
+      <input id="coefA" value="1" aria-label="a">
+      <span>x +</span>
+      <input id="coefB" value="0" aria-label="b">
+      <span>y</span>
+      <select id="opSelect" aria-label="dấu">
+        <option value="≤">≤</option><option value="≥">≥</option><option value="<"><</option><option value=">">></option><option value="=">=</option>
+      </select>
+      <input id="coefC" value="0" aria-label="c">
+    </div>
+    <div class="muted keypad-hint">Bấm số để điền nhanh vào ô đang chọn (a/b/c):</div>
+    <div class="keypad" id="keypad"></div>
+    <button class="primary-btn" id="addBtn">＋ Thêm bất phương trình</button>
+
+    <div class="section-title cyan">2. HỆ BẤT PHƯƠNG TRÌNH</div>
+    <div id="ineqList" class="ineq-list"></div>
+
+    <div class="section-title green">3. GIẢI TỪNG BƯỚC</div>
+    <div class="step-controls">
+      <button id="firstBtn">⏮</button><button id="prevBtn">◀</button>
+      <span id="stepLabel">Chưa giải</span>
+      <button id="nextBtn">▶</button><button id="lastBtn">⏭</button>
+    </div>
+    <button class="secondary-btn" id="solveBtn">⚙ Giải hệ</button>
+    <button class="secondary-btn" id="autoBtn">⏵ Auto Play (2.5s / bước)</button>
+
+    <div class="section-title orange">4. TỐI ƯU HÀM MỤC TIÊU</div>
+    <div class="objective-grid">
+      <label>a <input id="objA" value="1"></label>
+      <label>b <input id="objB" value="1"></label>
+    </div>
+    <button class="secondary-btn" id="objToggle">📈 Hiện đường mức F</button>
+    <div id="objControls" class="obj-controls hidden">
+      <div id="objFLabel" class="formula">F = x + y = 0</div>
+      <input id="objSlider" type="range" min="-20" max="20" step="0.01" value="0">
+    </div>
+
+    <div class="section-title purple">5. HIỂN THỊ</div>
+    <button class="secondary-btn" id="verticesBtn">📐 Hiện đỉnh</button>
+    <button class="secondary-btn" id="resetBtn">↺ Đặt lại mẫu</button>
+
+    <div id="status" class="status">Sẵn sàng.</div>
+  </aside>
+
+  <main class="canvas-area">
+    <div class="graph-toolbar">
+      <div class="graph-title">Miền nghiệm hệ bất phương trình</div>
+      <div class="toolbar-buttons">
+        <button id="fitBtn">⌂ Đặt lại khung</button>
+      </div>
+    </div>
+    <div id="graphWrap">
+      <svg id="graph" viewBox="0 0 900 700" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="coord" id="coord">x = — &nbsp;&nbsp; y = —</div>
+      <div class="hint">🖱 Cuộn để zoom · Giữ & kéo để di chuyển</div>
+    </div>
+  </main>
+
+  <aside class="explain-panel">
+    <div class="explain-head">📟 GIẢI THÍCH TỪNG BƯỚC</div>
+    <pre id="explain">Nhập hệ bất phương trình rồi bấm “⚙ Giải hệ”.
+
+Bạn có thể dùng chuột để zoom/pan đồ thị.</pre>
+    <div id="vertexTable" class="vertex-table hidden"></div>
+  </aside>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
